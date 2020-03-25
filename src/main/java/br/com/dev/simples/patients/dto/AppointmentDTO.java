@@ -18,7 +18,7 @@ public class AppointmentDTO {
 
 	private LocalDateTime localDateTime;
 	private AppointmentType type;
-	private String patientCode;
+	private String patientId;
 	private double weight;
 	private double waistCircumference;
 	private double glicemia;

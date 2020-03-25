@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.dev.simples.patients.dto.AppointmentDTO;
-import br.com.dev.simples.patients.mapping.AppointmentMappting;
+import br.com.dev.simples.patients.mapping.AppointmentMapping;
+import br.com.dev.simples.patients.model.Appointment;
 import br.com.dev.simples.patients.repository.AppointmentRepository;
 
 @Service
@@ -17,11 +18,12 @@ public class AppointmentService {
 	private AppointmentRepository appointmentRepository;
 	
 	@Autowired
-	private AppointmentMappting mapping;
+	private AppointmentMapping mapping;
 	
 	
 	public void saveAppointment(AppointmentDTO appointmentDTO) {
-		appointmentRepository.save( mapping.toAppointment.apply(appointmentDTO) );
+		Appointment appointment = mapping.toAppointment.apply(appointmentDTO);
+		appointmentRepository.save( appointment );
 	}
 	
 	public List<AppointmentDTO> getAppointments(){
