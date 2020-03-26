@@ -14,7 +14,7 @@ import br.com.dev.simples.patients.dto.PatientDTO;
 import br.com.dev.simples.patients.service.PatientService;
 
 @RestController
-@RequestMapping("patient")
+@RequestMapping("patients")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PatientApi {
 
@@ -30,4 +30,5 @@ public class PatientApi {
 	public List<PatientDTO> getPatients() {
 		return patientService.getPatients();
 	}
+
 }

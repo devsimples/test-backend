@@ -14,11 +14,17 @@ public class PatientMappting {
 		PatientDTO.builder()
 			.id(patient.getId())
 			.firstName(patient.getFirstName())
+			.middleName(patient.getMiddleName())
+			.lastName(patient.getLastName())
+			.email(patient.getEmail())
 			.build();
 		
 	public final Function<PatientDTO, Patient>  toPatient = (PatientDTO dto) -> 
 		Patient.builder()
 			.id(dto.getId())
 			.firstName(dto.getFirstName())
+			.middleName(dto.getMiddleName())
+			.lastName(dto.getLastName())
+			.email(dto.getEmail())
 			.build();
 }

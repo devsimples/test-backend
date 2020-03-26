@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.dev.simples.patients.dto.AppointmentDTO;
+import br.com.dev.simples.patients.dto.report.ReportPerPatient;
 import br.com.dev.simples.patients.service.AppointmentService;
 
 @RestController
@@ -30,4 +31,11 @@ public class AppointmentApi {
 	public List<AppointmentDTO> getAppointments() {
 		return appointmentService.getAppointments();
 	}
+	
+	@GetMapping("/report")
+	public List<ReportPerPatient> getReportByPatient (@RequestBody String patientId) {
+		return null;
+	}
+
+	
 }

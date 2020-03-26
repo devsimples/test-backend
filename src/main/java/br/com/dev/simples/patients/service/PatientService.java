@@ -1,6 +1,7 @@
 package br.com.dev.simples.patients.service;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class PatientService {
 	private PatientMappting mapping;
 
 	public void savePatient(PatientDTO patientDTO) {
+		patientDTO.setId(UUID.randomUUID().toString());
 		patientRepository.save( mapping.toPatient.apply(patientDTO) );
 	}
 	

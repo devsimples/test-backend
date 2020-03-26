@@ -10,5 +10,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 
 	@Override
     public List<Appointment> findAll();
-	
+
+    public List<Appointment> findByPatientId(String id);
 }

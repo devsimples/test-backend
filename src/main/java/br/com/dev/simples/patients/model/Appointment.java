@@ -1,6 +1,9 @@
 package br.com.dev.simples.patients.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import br.com.dev.simples.patients.model.enumeration.AppointmentType;
@@ -36,6 +40,7 @@ public class Appointment {
 	@NotNull
 	private LocalDateTime localDateTime;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private AppointmentType type;
 	
@@ -43,11 +48,16 @@ public class Appointment {
 	@ManyToOne
 	private Patient patient;
 	
-	private double weight;
+	private BigDecimal weight;
 	
 	@Column(name = "waist_circumference")
-	private double waistCircumference;
+	private BigDecimal waistCircumference;
 	
-	private double glicemia;
+	private BigDecimal glicemia;
 	
+	@Transient
+	public int getWeekOfYear() {
+        WeekFields wf = WeekFields.of(Locale.getDefault());
+        return localDateTime.get(wf.weekOfYear());
+    }
 }
