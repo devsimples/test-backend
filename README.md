@@ -1,4 +1,4 @@
-# Foo Backend
+# Appointment Backend
 Backend application running on Spring Boot.
 
 
