@@ -16,6 +16,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ReportWeekDTO {
 
+	private Integer year;
 	private Integer weekOfYear;
 	private Integer numberOfAppointments;
 	private Map<AppointmentType, Long> countPerType;

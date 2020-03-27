@@ -60,4 +60,20 @@ public class Appointment {
         WeekFields wf = WeekFields.of(Locale.getDefault());
         return localDateTime.get(wf.weekOfYear());
     }
+	
+	@Transient
+	public int getYear() {
+        return localDateTime.getYear();
+    }
+	
+	@Transient
+	public BigDecimal getSumOutcome() {
+        BigDecimal outcome = new BigDecimal(0);
+
+		outcome = outcome.add( getWeight() != null ? getWeight() : BigDecimal.ZERO );
+		outcome = outcome.add( getGlicemia() != null ? getGlicemia() : BigDecimal.ZERO );
+		outcome = outcome.add( getWaistCircumference() != null ? getWaistCircumference() : BigDecimal.ZERO );
+
+        return outcome;
+    }
 }

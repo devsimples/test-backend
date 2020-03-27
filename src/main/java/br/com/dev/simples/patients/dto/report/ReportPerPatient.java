@@ -30,13 +30,14 @@ public class ReportPerPatient {
 		weeks = new ArrayList<ReportWeekDTO>();
 	}
 
-	public void createWeek(int weekOfYear, List<Appointment> appointments)
+	public void createWeek(int year, int weekOfYear, List<Appointment> appointments)
 	{
 		ReportWeekDTO week = new ReportWeekDTO();
-		
+
 		week.setNumberOfAppointments(appointments.size());
+		week.setYear((year));
 		week.setWeekOfYear(weekOfYear);
-		
+
 		week.setCountPerType(CHECKUP, countAppointmentType(appointments, CHECKUP));
 		week.setCountPerType(CONSULTATION, countAppointmentType(appointments, CONSULTATION));
 		week.setCountPerType(EXAMINATION, countAppointmentType(appointments, EXAMINATION));
@@ -44,13 +45,14 @@ public class ReportPerPatient {
 		week.setCountPerType(ROUTINE, countAppointmentType(appointments, ROUTINE));
 		
 		BigDecimal sumOutcome = appointments.stream()
-				.map( a-> a.getGlicemia().add(a.getWaistCircumference()).add(a.getWeight()) )
+				.map(Appointment::getSumOutcome)
 				.reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+
 		BigDecimal averageOutcome = sumOutcome.divide(new BigDecimal(appointments.size()));
-		
-		
+
 		week.setAverageOutcomes(averageOutcome);
-				
+
+		weeks.add(week);
 	}
 	
 	private Long countAppointmentType(List<Appointment> appointments, AppointmentType type) {
