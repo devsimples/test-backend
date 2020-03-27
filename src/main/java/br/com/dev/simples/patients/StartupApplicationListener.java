@@ -16,8 +16,8 @@ public class StartupApplicationListener implements ApplicationListener<Applicati
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
-		patientRepository.save(Patient.builder().id("marcos").firstName("Marcos Agostta").build());
-		patientRepository.save(Patient.builder().id("simone").firstName("Simone Gianni").build());
+		patientRepository.save(Patient.builder().id("marcos").firstName("Marcos").lastName("Agostta").build());
+		patientRepository.save(Patient.builder().id("simone").firstName("Simone").lastName("Gianni").build());
 	}
 
 }
