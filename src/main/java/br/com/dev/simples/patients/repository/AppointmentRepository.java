@@ -1,10 +1,9 @@
 package br.com.dev.simples.patients.repository;
 
-import java.util.List;
-
+import br.com.dev.simples.patients.model.Appointment;
 import org.springframework.data.repository.CrudRepository;
 
-import br.com.dev.simples.patients.model.Appointment;
+import java.util.List;
 
 public interface AppointmentRepository extends CrudRepository<Appointment, Integer>{
 
@@ -12,4 +11,5 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
     public List<Appointment> findAll();
 
     public List<Appointment> findByPatientId(String id);
+
 }

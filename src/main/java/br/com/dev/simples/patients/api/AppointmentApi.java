@@ -1,7 +1,8 @@
 package br.com.dev.simples.patients.api;
 
 import br.com.dev.simples.patients.dto.AppointmentDTO;
-import br.com.dev.simples.patients.dto.report.ReportPerPatient;
+import br.com.dev.simples.patients.model.report.AppointmentReport;
+import br.com.dev.simples.patients.service.AppointmentReportService;
 import br.com.dev.simples.patients.service.AppointmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,9 @@ public class AppointmentApi {
 	@Autowired
 	private AppointmentService appointmentService;
 
+	@Autowired
+	private AppointmentReportService appointmentReportService;
+
 	@PostMapping
 	public void createAppointment(@RequestBody AppointmentDTO appointment) {
 		appointmentService.saveAppointment(appointment);
@@ -27,9 +31,8 @@ public class AppointmentApi {
 	}
 	
 	@GetMapping("/report/{patientId}")
-	public ReportPerPatient getReportByPatient (@PathVariable String patientId) {
-		return appointmentService.getReport(patientId);
+	public List<AppointmentReport> getReportByPatient (@PathVariable String patientId) {
+		return appointmentReportService.getReport(patientId);
 	}
 
-	
 }
