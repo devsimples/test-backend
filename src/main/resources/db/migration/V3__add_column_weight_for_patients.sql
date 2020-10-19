@@ -1,0 +1,1 @@
+alter table patients add column weight decimal(5, 2);
